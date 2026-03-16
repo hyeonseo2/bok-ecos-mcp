@@ -1,0 +1,44 @@
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "bok-ecos-mcp"
+version = "0.1.0"
+description = "MCP stdio server for Bank of Korea ECOS API"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+  { name = "bok-ecos-mcp contributors" }
+]
+keywords = ["mcp", "ecos", "bok", "economics"]
+dependencies = [
+  "mcp>=1.0.0",
+  "httpx>=0.27.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "pytest-asyncio>=0.23.0",
+  "ruff>=0.6.0"
+]
+
+[project.scripts]
+bok-ecos-mcp = "bok_ecos_mcp.server:main"
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "W"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
